@@ -6,11 +6,7 @@ section .text
 global _start
 
 _start:
-    call print_data
-    call print_data
-    call print_data
-    call print_data
-    call print_data
+    times 10 call print_data
     mov rax, 60
     mov rbx, 0
 
