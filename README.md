@@ -1,4 +1,3 @@
-# Assembler, bitch! ☠️
 <h1 width=300>
   Assembler ☠️
   <img src="https://i.pinimg.com/564x/2e/06/0d/2e060d7639b330ef6ff13ebfcda7d84a.jpg" align='right' width=150 />
