@@ -1,10 +1,10 @@
 <h1>
   Assembler ☠️
-  <img src="https://i.pinimg.com/564x/2e/06/0d/2e060d7639b330ef6ff13ebfcda7d84a.jpg" align='right' width=150 />
+  <img src="https://i.pinimg.com/564x/2e/06/0d/2e060d7639b330ef6ff13ebfcda7d84a.jpg" align='right' width=120 />
   
 </h1>
 
-## Build ⚙️
+### Build ⚙️
 
 ![](https://i.imgur.com/GdybPpy.png)
 
@@ -22,7 +22,9 @@ curl https://gist.githubusercontent.com/AppLoidx/d419516992e3a9292b6aa72812aca41
 cd Assembly/
 ```
 
-## Run 🏃‍♂️
+<br>
+
+### Run 🏃‍♂️
 
 If you built with script you can run any assembler command in each directory with following command:
 
@@ -34,7 +36,7 @@ For example,
 ```
 ./basic/times.asm.out
 ```
-<br><br><br><br>
+<br>
 <hr>
 
 
