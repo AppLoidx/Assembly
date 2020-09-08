@@ -15,6 +15,7 @@ or
 
 ```
 curl https://gist.githubusercontent.com/AppLoidx/d419516992e3a9292b6aa72812aca41f/raw/9a5cb33e9b954c23fb21ae07531f4eb1613bad87/build-assembly-script.sh | bash
+cd Assembly/
 ```
 
 ## Run
