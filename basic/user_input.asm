@@ -45,7 +45,7 @@ _start:
     ; we have to store len of user's name
     mov [name_len], rax
 
-    ; Writing full welcome message with user name
+    ; writing full welcome message with user name
 
     mov rax, sys_write
     mov rdi, stdout
@@ -58,6 +58,8 @@ _start:
     mov rdi, stdout
     mov rsi, name
     mov rdx, [name_len]
+    ; we have to delete last char of user input, because he contains newline character
+    ; first method: 
     sub rdx, 1
     syscall
 

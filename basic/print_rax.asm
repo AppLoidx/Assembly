@@ -5,8 +5,7 @@ codes:
 section .text                       
 global _start                       
 _start:                         
-    ; number 1122... in hexadecimal format
-    mov rax, 0x1122334455667788    
+    mov rax, 0x666    
                     
     mov rdi, 1                  
     mov rdx, 1                  
@@ -39,4 +38,5 @@ _start:
     
     mov     rax, 60            ; invoke 'exit' system call
     xor     rdi, rdi
-                                                                                                                                                                                                                                                                        syscall
+    syscall
+    
