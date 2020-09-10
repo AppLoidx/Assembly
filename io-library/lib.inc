@@ -45,7 +45,7 @@ string_length:
         je .end                 ; if equals
         inc rax                 ; increment counter
         jmp .str_len_loop       ; back to loop
-    .end
+    .end:
         ret
 
 ; Принимает указатель на нуль-терминированную строку, выводит её в stdout
@@ -92,28 +92,30 @@ print_newline:
 ; Не забудьте перевести цифры в их ASCII коды.
 print_uint:
     push r12
-    mov r12, rsp                                    ; сохраним вершину стека в r12
-    mov rax, rdi                                    ; сохраним переданное чило в rax
+    mov r12, rsp                                    
+    mov rax, rdi                                    
     dec rsp
-    mov byte[rsp], 0                                ; dec+mov - "руками" делаем однобайтовый pop
+    mov byte[rsp], 0                                
     .loop:
-    dec rsp                                     ; сдвигаем указатель
-    xor rdx, rdx                                ; обнуляем rdx
-    push r13
-    mov r13, 10
-    div  r13                                    ; делим на 10, остаток в rdx
-    pop r13
-    add rdx, 0x30                               ; переводим в ASCII
-    mov  byte[rsp], dl                          ; сохраняем в стeк
-    test rax, rax                               ; установит ZF = 0, если rax = 0
-    jz .print                                   ; если ZF == 0, заканчиваем деление
-    jmp .loop
+        xor rdx, rdx
+        dec rsp                                     ; move pointer
+        push r13
+        mov r13, 10
+        div  r13                ; div by 10 (sys base), quotient stored to rdx
+        pop r13
+        add rdx, 0x30           ; convert to ASCII
+        mov  byte[rsp], dl      ; save value
+        test rax, rax           ; set flags (zf)
+        jz .print                 
+        jmp .loop
     .print:
-    mov rdi, rsp                                    ; аргумент для print_string
-    call print_string                               ; выводим число в stdout
-    mov rsp, r12                        
-    pop r12                                         ; восстановим регистры
-    ret
+        mov rdi, rsp           
+        call print_string       
+        mov rsp, r12
+        jmp .end                
+    .end:
+        pop r12                                         ; восстановим регистры
+        ret
 
 ; Выводит знаковое 8-байтовое число в десятичном формате 
 print_int:
