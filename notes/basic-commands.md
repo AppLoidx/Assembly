@@ -55,6 +55,9 @@ Since the current address at the start of the second line is the next address af
 
 
 #### lea eax, [rdi+1]
+
+*из [stackoverflow](https://ru.stackoverflow.com/questions/610242/%D0%90%D1%81%D1%81%D0%B5%D0%BC%D0%B1%D0%BB%D0%B5%D1%80%D0%BD%D0%B0%D1%8F-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0-lea)*
+
 ```asm
 lea eax, [rdi+1]
 ```
