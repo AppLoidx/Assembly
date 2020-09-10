@@ -6,6 +6,8 @@
 <p align='center'><img alt="NASM Structure" src="https://cs.lmu.edu/~ray/images/nasmstructure.png" /><p>
 
 <p align='center'><img alt="RDX" src="https://cs.lmu.edu/~ray/images/rdx.png" /><p>
+<p align='center'><img alt="RDX" src="https://www.cs.virginia.edu/~evans/cs216/guides/x86-registers.png" /><p>
+
 
 ### Forms of addressing
 
