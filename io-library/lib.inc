@@ -14,12 +14,6 @@
 %define new_line 0xA
 %define base_10 10
 
-
-section .bss
-    char_input: resb 2
-    char_input_len: equ 2
-
-
 section .text
  
  
