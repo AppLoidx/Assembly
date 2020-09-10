@@ -12,6 +12,12 @@
 
 ; const
 %define new_line 0xA
+%define base_10 10
+
+
+section .data
+    BYTE_BUFFER: times 10 db 0 
+    ; it's just a memory to size 10 , each slot holds the value 0
 
 section .text
  
@@ -85,13 +91,48 @@ print_newline:
 ; Совет: выделите место в стеке и храните там результаты деления
 ; Не забудьте перевести цифры в их ASCII коды.
 print_uint:
-    xor rax, rax
+    push r12
+    mov r12, rsp                                    ; сохраним вершину стека в r12
+    mov rax, rdi                                    ; сохраним переданное чило в rax
+    dec rsp
+    mov byte[rsp], 0                                ; dec+mov - "руками" делаем однобайтовый pop
+    .loop:
+    dec rsp                                     ; сдвигаем указатель
+    xor rdx, rdx                                ; обнуляем rdx
+    push r13
+    mov r13, 10
+    div  r13                                    ; делим на 10, остаток в rdx
+    pop r13
+    add rdx, 0x30                               ; переводим в ASCII
+    mov  byte[rsp], dl                          ; сохраняем в стeк
+    test rax, rax                               ; установит ZF = 0, если rax = 0
+    jz .print                                   ; если ZF == 0, заканчиваем деление
+    jmp .loop
+    .print:
+    mov rdi, rsp                                    ; аргумент для print_string
+    call print_string                               ; выводим число в stdout
+    mov rsp, r12                        
+    pop r12                                         ; восстановим регистры
     ret
 
 ; Выводит знаковое 8-байтовое число в десятичном формате 
 print_int:
     xor rax, rax
-    ret
+    mov rax, rdi                                    
+    test rax, rax       ; set flags
+    jns .not_minus                                  
+    
+    push rax                        
+    mov  rdi, '-'       ; print "-"
+    call print_char     
+    pop rax
+
+    neg rax             ; convert to non-negative number
+    mov rdi, rax
+    
+    .not_minus:
+        call print_uint ; print as unsigned value ("-" char already should be printed)
+        ret
 
 ; Принимает два указателя на нуль-терминированные строки, возвращает 1 если они равны, 0 иначе
 string_equals:
