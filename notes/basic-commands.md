@@ -103,11 +103,11 @@ add eax, 4; да, некрасиво!
 lea  eax, [rdi+1]
 ```
 
-!()[https://i.stack.imgur.com/ZlfnK.png]
+![](https://i.stack.imgur.com/ZlfnK.png)
 
 Сравните с `mov`:
 
-!()[https://i.stack.imgur.com/YEdtD.png]
+![](https://i.stack.imgur.com/YEdtD.png)
 
 Байткод: `66 67 8D 47 01`
 
