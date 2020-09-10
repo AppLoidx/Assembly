@@ -52,3 +52,69 @@ msglen  EQU     $ - msg
 ```
 
 Since the current address at the start of the second line is the next address after the end of the string, subtracting the address of the start of the string will give the length of the string---in this case, msglen will be defined as 5. The second special constant, the double dollar sign, evaluates to the address of the start of the current section, so that you can check how much space you've used (with the expression $ - $$).
+
+
+#### lea eax, [rdi+1]
+```asm
+lea eax, [rdi+1]
+```
+Эта команда загружает в eax адрес значения, лежащего по адресу rdi + 1. Т.е. она загружает в eax просто rdi+1.
+
+Выглядит странно, и чтобы понять зачем именно нужна lea, и чем она лучше просто аналогичного вызова mov или ручного вычисления адреса, нужно понять как команды записываются в памяти и выполняются процессором.
+
+Например, у вас есть команда чтения значения:
+```asm
+mov  eax, [rdi+1]; взять значение по адресу "rdi + 1"
+```
+
+Она компилируется в что-то вроде
+```
+[опкод mov][флаг что складываем в eax][флаг что берем по адресу rdi][+1]
+```
+
+![](https://i.stack.imgur.com/YEdtD.png)
+
+Т.е. в `66 67 8B 47 01`
+
+Предположим что вам нужно получить сам адрес rdi+1 в eax
+
+Вы можете сделать одно из двух:
+
+Высчитать его руками:
+```asm
+mov eax, rdi + 1; не работает, move не умеет плюс!
+```
+и вам придется написать:
+```asm
+mov eax, rdi 
+inc eax; 66 05 01 00 00 00
+```
+т.е. выполнить две инструкции. Возможно, хороший вариант, но только для простых +1. А для адресов вида [bp+si+4]?
+```asm
+mov eax, bp
+add eax, si
+add eax, 4; да, некрасиво!
+```
+или выполнить lea:
+```asm
+lea  eax, [rdi+1]
+```
+
+!()[https://i.stack.imgur.com/ZlfnK.png]
+
+Сравните с `mov`:
+
+!()[https://i.stack.imgur.com/YEdtD.png]
+
+Байткод: `66 67 8D 47 01`
+
+Отличается только opcode, `8B` -> `8D`.
+
+В процессоре есть готовый, очень эффективный механизм для базовых операций с адресами. 
+И он уже реализован для операции mov - ведь mov умеет доставать значение по адресу!.
+
+При использовании lea процессор делает все, что делает при mov, 
+но пропускает последний шаг - извлечение значения по адресу. 
+Вместо этого он складывает в eax сам адрес. Это гораздо удобнее и 
+быстрее чем считать вещи вроде rdi + 1 отдельными командами.
+
