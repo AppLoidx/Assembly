@@ -11,17 +11,18 @@
 %define success 0
 
 ; const
-%define new_line 0xA
+%define new_line '\n'
 %define base_10 10
 
-section .text
- 
+
+section .text 
  
 ; Принимает код возврата и завершает текущий процесс
 exit: 
     xor rax, rax,
     mov rax, sys_exit
     ; rdi already set // i hope :)
+    syscall
     ret 
 
 sys_stdout:
@@ -147,7 +148,7 @@ string_equals:
             jne .loop
             inc rax
        .ret_zero:
-            pop r13
+            pop r13 ; restore
             pop r10
                                                                                                                         ret
 ; Читает один символ из stdin и возвращает его. Возвращает 0 если достигнут конец потока
@@ -261,7 +262,6 @@ parse_uint:
 ; Возвращает в rax: число, rdx : его длину в символах (включая знак, если он был) 
 ; rdx = 0 если число прочитать не удалось
 parse_int:
-    xor rax, rax
     xor rax, rax
     cmp byte [rdi], 0x2d
     je .parse_ng
