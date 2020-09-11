@@ -133,3 +133,9 @@ lea  eax, [rdi+1]
 * IF – флаг прерываний. 1 – прерывания разрешены, 0 – прерывания запрещены
 * DF – флаг направления. 0 – строки обрабатываются в сторону увеличения адресов, 1 – в сторону уменьшения адресов
 
+#### CALL and RET
+
+Two instructions control the use of assembly-language procedures:
+
+* CALL pushes the return address onto the stack and transfers control to a procedure.
+* RET pops the return address off the stack and returns control to that location.
