@@ -1,6 +1,6 @@
 section .data
 message:
-db  'hello, Onee-chan!', 12
+db  'hello, Onee-chan!'
 
 section .text
 global _start

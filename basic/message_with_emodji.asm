@@ -4,6 +4,7 @@ section .data
     line_break db "",10
     emoji: db "😆"
     .end:
+
 section .text
 
 global _start;

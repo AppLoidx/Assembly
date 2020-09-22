@@ -1,0 +1,5 @@
+*.out
+*.o
+
+io-library/termcolor.pyc
+io-library/test.py

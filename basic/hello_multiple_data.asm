@@ -5,8 +5,8 @@ one_line_message db "Onee-chan!" ; without line break
 
 section .text
 
-global _start ; this defines the entry-point of the program
-_start:
+global start ; this defines the entry-point of the program
+start:
     mov rax, 1
     ; mov - moves data and values around between registers and memory
     ; rax - general purpose register
