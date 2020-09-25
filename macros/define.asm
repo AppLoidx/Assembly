@@ -1,4 +1,4 @@
-%define S "some shit"
+%define S "some thing"
 
 section .data
 msg: db S, 0
