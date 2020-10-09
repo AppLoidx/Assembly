@@ -4,6 +4,9 @@
   
 </h1>
 
+![](https://i.imgur.com/GdybPpy.png)
+
+
 ### Reports
 
 * [LAB 1](report/lab1.pdf)
@@ -11,7 +14,6 @@
 * [LAB 3](report/lab3.pdf)
 
 
-![](https://i.imgur.com/GdybPpy.png)
 
 ### Build ⚙️
 
