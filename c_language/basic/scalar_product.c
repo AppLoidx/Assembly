@@ -18,6 +18,6 @@ int main() {
     const int b[] = {666,666,666};
 
     int product = scalar(a, b, sizeof(a) / sizeof(a[0]));
-    printf("Result is : %d", product);
+    printf("Result is : %d\n", product);
     return 0;
 }

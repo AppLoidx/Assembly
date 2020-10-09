@@ -73,13 +73,13 @@ print_char:
 ; Переводит строку (выводит символ с кодом 0xA)
 print_newline:
     xor rax, rax
-    push rsi
+    ;push rsi
     
     mov rsi, new_line
     mov rdx, 1
     call sys_stdout
     
-    pop rsi
+    ;pop rsi
 
     ret
 
@@ -153,8 +153,8 @@ string_equals:
                                                                                                                         ret
 ; Читает один символ из stdin и возвращает его. Возвращает 0 если достигнут конец потока
 read_char:
-    push rdi
-    push rdx
+    ;push rdi
+    ;push rdx
     dec rsp
     mov rax, sys_read
     mov rdi, stdin
@@ -169,7 +169,7 @@ read_char:
     .return:
         ; restore values
         inc rsp
-        pop rdx
+        ;pop rdx
         pop rdi
         ret
 
@@ -299,13 +299,17 @@ string_copy:
         
         ; check for end of string
         cmp r12, 0
-        je .exit
+        je .success
         
         inc rcx
         jmp .main_loop
 
     .overflow:
-        mov rax, 0
+        xor rax, rax
+        jmp .exit
+
+    .success:
+        mov rax, rcx
         jmp .exit
 
     .exit:

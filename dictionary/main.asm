@@ -10,9 +10,12 @@ extern print_string
 extern string_length
 extern exit
 
+%define offset list_end - list_start
 
 section .data
     msg_noword: db "No such word ❌", 0
+    buff:  times list_end-list_start db 0
+                                     dw 0, 0, 0, 0 
 
 section .text
 
@@ -20,11 +23,22 @@ global _start
 _start:
     push rbp
     mov rbp, rsp        ; store rsp value
+    push qword last_elem
+    
+    .l0:
+    ; mov r9, list_end-list_start
+    xor r9, r9
+    mov r10, qword [list_start + r9]
+    mov qword [buff + r9], r10
+    inc r9
+    cmp r9, offset
+    ; jne  .l0
+    
     sub rsp, buffer_alloc
     mov rdi, rsp
     call read_word
     mov rdi, rax
-    mov rsi, last_elem
+    mov rsi, last_elem ;qword [rbp - 8]
     call find_word      ; search in our list
     test rax, rax
     jz .word_not_found

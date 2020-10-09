@@ -9,13 +9,20 @@
     dd %1, 0
 %endif
 %endmacro
+
+global list_start
+global list_end
     
+list_start:
 
 colon "hello", key_1
-dw "Hello, Onee-chan! 😇", 0
+add_key "Hello, Onee-chan! 😇"
 
 colon "baka", key_2
-dw "Baka! 😣", 0
+add_key "Baka! 😣"
 
 colon "desu", key_3
-dw "Watashi wa anata ga suki desu 💖", 0
+add_key "Watashi wa anata ga suki desu 💖"
+
+list_end:
+

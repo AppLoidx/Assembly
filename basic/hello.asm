@@ -7,7 +7,7 @@ global _start
 
 _start:
     mov     rax, 1           ; 'write'
-    mov     rdi, 1           ;
+    mov     rdi, 1           ;n
     mov     rsi, message     ;
     mov     rdx, 20          ;
     

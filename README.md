@@ -4,6 +4,11 @@
   
 </h1>
 
+### Reports
+
+* [LAB 1](report/lab1.pdf)
+* [LAB 2](report/lab2.pdf)
+* [LAB 3](report/lab3.pdf)
 
 
 ![](https://i.imgur.com/GdybPpy.png)

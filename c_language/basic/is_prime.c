@@ -19,8 +19,18 @@ int main() {
     unsigned long user_input;
     printf("Please, input your number: ");
     scanf("%lu", &user_input);
+    
+    char[20] output;
 
-    printf("Your number [%lu] is %s", user_input, is_prime(user_input) ? "prime" : "not prime");
+    if (is_prime(user_input)) {
+        output = "prime";
+    } else { 
+        output = "not prime";
+    }
+
+    printf("Your number [%lu] is %s\n", 
+            user_input, 
+            is_prime(user_input) ? "prime" : "not prime");
 
     return 0;
 }
