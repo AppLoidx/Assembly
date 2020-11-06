@@ -16,8 +16,6 @@ void *memcpy(void *dest, const void *src, size_t len)
 
 void write_image(struct source *img, struct bmp_header *header, FILE *image)
 {
-    // fwrite(header, sizeof(struct bmp_header), 1, image);
-    // fwrite(img->pixels, sizeof(struct pixel), img->height * img->width, image);
 
     fwrite(header, sizeof(struct bmp_header), 1, image);
     uint8_t padding = (4 - (img->width * sizeof(struct pixel)) % 4) % 4;
@@ -63,15 +61,6 @@ struct source *rotate_image(struct source *origin)
         }
     }
     return new_image;
-}
-
-struct bmp_header rotate_header(struct bmp_header origin)
-{
-    uint32_t tmp = origin.biHeight;
-
-    origin.biHeight = origin.biWidth;
-    origin.biWidth = tmp;
-    return origin;
 }
 
 struct bmp_header *rotate_h(struct bmp_header *header)
